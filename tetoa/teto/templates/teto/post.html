@@ -1,0 +1,13 @@
+{% extends 'MedoedPJ/base.html' %}
+
+{% block info %}
+<h1>{{posts.title}}</h1><p></p>
+
+{{posts.content|linebreaks}}
+
+{% if posts.photo %}
+<p><img class="img-article-left" src="{{posts.photo.url}}" width="300" height="auto"></p>
+{% endif %}
+
+
+{% endblock %}

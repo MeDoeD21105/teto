@@ -9,8 +9,8 @@
 <body>
     <h1>project teto  {{ title }}</h1>
 
-    {% for i in points %}
-    <li><a href=""> здесь должна быть ссылка на - </a>  {{ i.title }} </a>    </li>
+    {% for m in points %}
+    <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
     {% endfor %}
     {% block next %}
     {% endblock %}

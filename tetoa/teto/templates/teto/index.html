@@ -9,7 +9,7 @@
     <h3>Цена  = {{ i.price  }}₽ </h3><p></p>
     {% if i.photo %}
     <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto"><p></p>
-    <!-- <a href = "{{ i.get_absolute_url }}"> Читать пост</a>-->
+    <a href = "{{ i.get_absolute_url }}"> Читать пост</a>
     {% endif %}
     {% endfor %}
 {% endblock %}
