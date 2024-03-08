@@ -5,5 +5,5 @@ from django.urls import path
 
 
 urlpatterns = [
-    path("", index)
+    path("", ProductClass.as_view(), name="Home")
     ]

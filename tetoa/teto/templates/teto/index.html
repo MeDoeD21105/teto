@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style> li {list-style-type: none; /* Убираем маркеры */} </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     <h1>project teto</h1>
+    <h1>{{ title }}</h1>
+    {% for i in points %}
+    <li><a href="">  # </a>  {{ i.title }} </a>    </li>
+    {% endfor %}
     
 </body>
 </html>
