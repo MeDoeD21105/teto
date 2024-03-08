@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style> li {list-style-type: none; /* Убираем маркеры */} </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>project teto</h1>
-    <h1>{{ title }}</h1>
-    {% for i in points %}
-    <li><a href="">  # </a>  {{ i.title }} </a>    </li>
-    {% endfor %}
+{% extends "base.html" %}
+{% block next %}
+    {{ title }}
+    {% for i in posts %}
+    <h1>{{ i.title }}  </h1><p></p>
+    <h2>{{ i.content |linebreaks|truncatewords:50 }}  </h2><p></p>
     
-</body>
-</html>
+    <h2> В наличие {{ i.quantity }} шт</h2>
+    <h3>Цена  = {{ i.price  }}₽ </h3><p></p>
+    {% if i.photo %}
+    <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto"><p></p>
+    <!-- <a href = "{{ i.get_absolute_url }}"> Читать пост</a>-->
+    {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style> li {list-style-type: none; /* Убираем маркеры */} </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>project teto  {{ title }}</h1>
+
+    {% for i in points %}
+    <li><a href=""> здесь должна быть ссылка на - </a>  {{ i.title }} </a>    </li>
+    {% endfor %}
+    {% block next %}
+    {% endblock %}
+    
+</body>
+</html>
