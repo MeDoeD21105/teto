@@ -1,6 +1,6 @@
-{% extends 'MedoedPJ/base.html' %}
+{% extends 'base.html' %}
 
-{% block info %}
+{% block next %}
 <h1>{{posts.title}}</h1><p></p>
 
 {{posts.content|linebreaks}}
@@ -8,6 +8,8 @@
 {% if posts.photo %}
 <p><img class="img-article-left" src="{{posts.photo.url}}" width="300" height="auto"></p>
 {% endif %}
+<h2> В наличие {{ posts.quantity }} шт</h2>
+<h3>Цена  = {{ posts.price  }}₽ </h3><p></p>
 
 
 {% endblock %}

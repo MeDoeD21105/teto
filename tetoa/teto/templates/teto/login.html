@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block next %}
+
+{{ title }}
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_error }}
+    {% for i in form %}
+    <p><label for="{{ i.id_for_label }}" >{{ i.label }} : </label> {{i}} </p>
+    {% endfor %}
+    <button type="submit">Войти</button>
+
+</form>
+
+
+
+
+
+
+
+
+{% endblock %}

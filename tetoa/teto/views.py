@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, FormView, CreateView
+from django.contrib.auth.views import LoginView
 
 from .models import *
 from .utils import *
@@ -35,7 +36,7 @@ class ProdAddClass(DataMixin, CreateView):
 
 class ShowPost(DataMixin, DetailView):
     model = Product
-    template_name = "MedoedPJ/post.html"
+    template_name = "teto/post.html"
     slug_url_kwarg = "post_slug"
     context_object_name = "posts"
     
@@ -56,4 +57,30 @@ class ContactClass(DataMixin,ListView):
         c_def = self.get_user_context()
         context["title"] = "Contact"
         return dict(list(context.items()) + list(c_def.items()))
+    
+class LoginUserr(DataMixin, LoginView):
+    form_class = LoginUserForm
+    template_name = "teto/login.html"
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        context["title"] = "Авторизация"
+        return dict(list(context.items()) + list(c_def.items()))
+    
+    
+class RegisterUserr(DataMixin, CreateView):
+    form_class = RegisterUserForm
+    template_name = "teto/register.html"
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        context["title"] = "Регистрация"
+        return dict(list(context.items()) + list(c_def.items()))
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy("login/")
+    
+    
     
