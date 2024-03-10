@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1>project teto  {{ title }}</h1>
+    {% if user.is_authenticated %}
+    <li> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></li>
+    {% endif %}
 
     {% for m in points %}
     <li><a href="{% url m.url_name %}">{{m.title}}</a></li>

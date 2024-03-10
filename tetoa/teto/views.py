@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, FormView, CreateView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 
 from .models import *
 from .utils import *
@@ -68,6 +70,9 @@ class LoginUserr(DataMixin, LoginView):
         context["title"] = "Авторизация"
         return dict(list(context.items()) + list(c_def.items()))
     
+    def get_success_url(self) -> str:
+        return reverse_lazy("Home")
+    
     
 class RegisterUserr(DataMixin, CreateView):
     form_class = RegisterUserForm
@@ -80,7 +85,11 @@ class RegisterUserr(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
     
     def get_success_url(self) -> str:
-        return reverse_lazy("login/")
+        return reverse_lazy("login")
     
+    
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
     
     
