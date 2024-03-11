@@ -13,13 +13,13 @@ class ProductForm(forms.ModelForm):
         
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label="Имя пользователя")
-    password = forms.CharField(label="Пороль")
+    password = forms.CharField(label="Пороль", widget=forms.PasswordInput())
     
-class RegisterUserForm(forms.ModelForm):
+class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label="Логин")
-    password = forms.CharField(label="Пароль",  widget=forms.PasswordInput())   
+    password1 = forms.CharField(label="Пароль",  widget=forms.PasswordInput())   
     password2 = forms.CharField(label=" Повтор пароля", widget=forms.PasswordInput())
     
-    class Meta:
-        model = get_user_model()
-        fields = ["username", "password", "password2" ]
+    #class Meta:
+     #   model = get_user_model()
+        #fields = ["username", "password", "password2" ]

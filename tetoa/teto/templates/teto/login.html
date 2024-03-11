@@ -4,21 +4,15 @@
 {% block next %}
 
 {{ title }}
-<form method="post">
+<form method="POST">
     {% csrf_token %}
-    {{ form.non_field_error }}
+    {{ form.non_field_errors}}
     {% for i in form %}
     <p><label for="{{ i.id_for_label }}" >{{ i.label }} : </label> {{i}} </p>
+    {{ i.errors }}
     {% endfor %}
     <button type="submit">Войти</button>
 
 </form>
-
-
-
-
-
-
-
 
 {% endblock %}
