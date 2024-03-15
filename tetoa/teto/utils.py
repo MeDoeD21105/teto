@@ -6,6 +6,8 @@ points = [
         #{"title":"Авторизация","url_name" : "login"},
         #{"title":"Регистрация","url_name" : "register"},
         {"title":"Пользователи","url_name" : "userrs"},
+        {"title":"Смена имени","url_name" : "name"},
+
           ]
 
 class DataMixin:
