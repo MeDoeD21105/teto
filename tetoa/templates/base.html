@@ -10,6 +10,7 @@
     <h1>project teto  {{ title }}</h1>
     {% if user.is_authenticated %}
     <li> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+    <li> <a href="{% url 'add_prod' %}">Добавление продукта</a></li>
     {% else %}
     <li><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></li>
     {% endif %}

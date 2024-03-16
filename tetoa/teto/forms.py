@@ -26,8 +26,8 @@ class RegisterUserForm(UserCreationForm):
      #   model = get_user_model()
         #fields = ["username", "password", "password2" ]
         
-        
-        
+     
+                 
 class Usermodname(forms.ModelForm):
     class Meta:
         model = User
