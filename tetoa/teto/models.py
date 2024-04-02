@@ -12,6 +12,7 @@ class Product(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
     price = models.DecimalField( max_digits = 7, decimal_places = 2, verbose_name="Цена")
     quantity = models.IntegerField( default=0, validators=[MinValueValidator(0), MaxValueValidator(10000)], verbose_name="Количество")
+    cat = models.ForeignKey("Category", on_delete = models.PROTECT, null = True)
     
     def get_absolute_url(self):
         return reverse("post", kwargs={"post_slug":self.slug})
@@ -19,3 +20,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+    
+class Category(models.Model):
+    name = models.CharField(max_length = 255, db_index = True)
+    slug = models.CharField(max_length = 255, db_index = True, unique = True)
+    
+    def get_absolute_url(self):
+        return reverse("category", kwargs={"cat_slug" : self.slug })
+    
+    def __str__(self):
+        return self.name

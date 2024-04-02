@@ -10,7 +10,7 @@ from .models import *
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["title", "slug", "content", "photo", "price", "quantity"]
+        fields = ["title", "slug", "content", "photo", "price", "quantity", "cat"]
         
         
 class LoginUserForm(AuthenticationForm):
