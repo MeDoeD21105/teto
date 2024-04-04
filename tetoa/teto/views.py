@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, FormView, CreateView
@@ -131,3 +132,22 @@ class ChangeName(DataMixin, LoginRequiredMixin, FormView):
         c_def = self.get_user_context()
         context["title"] = "Смена имени пользователя"
         return dict(list(context.items()) + list(c_def.items()))
+    
+    
+    
+    
+class tetoCategory(DataMixin, ListView):
+    template_name = "teto/index.html"
+    context_object_name = 'posts'
+    
+    def get_queryset(self):
+        return Product.objects.all().filter(cat__slug = self.kwargs['cat_slug']).select_related("cat")
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        cat = context["posts"][0].cat
+        context["title"] = "Категория -" + cat.name
+        return dict(list(context.items()) + list(c_def.items()))
+    
+    
