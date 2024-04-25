@@ -14,6 +14,7 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("users/", UsersClass.as_view(), name="userrs"),
     path("name/", ChangeName.as_view(), name = "name"),
-    path("category/<slug:cat_slug>/", tetoCategory.as_view(), name = "category" )
+    path("category/<slug:cat_slug>/", tetoCategory.as_view(), name = "category" ),
+    path('tag/<slug:tag_slug>/', TagPostList.as_view(), name='tag'),
     
 ]

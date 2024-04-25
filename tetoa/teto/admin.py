@@ -6,3 +6,5 @@ from .models import *
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
+    
+admin.site.register(TetoTagPost)

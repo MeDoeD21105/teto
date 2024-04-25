@@ -13,6 +13,7 @@ class Product(models.Model):
     price = models.DecimalField( max_digits = 7, decimal_places = 2, verbose_name="Цена")
     quantity = models.IntegerField( default=0, validators=[MinValueValidator(0), MaxValueValidator(10000)], verbose_name="Количество")
     cat = models.ForeignKey("Category", on_delete = models.PROTECT, verbose_name="Категория товара",)
+    tags = models.ManyToManyField('TetoTagPost', blank=True, related_name='tags', verbose_name="Теги")
     
     def get_absolute_url(self):
         return reverse("post", kwargs={"post_slug":self.slug})
@@ -32,3 +33,13 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+
+class TetoTagPost(models.Model):
+    tag = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+
+    def __str__(self):
+        return self.tag
+
+    def get_absolute_url(self):
+        return reverse('tag', kwargs={'tag_slug': self.slug})
