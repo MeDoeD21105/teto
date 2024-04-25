@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
-    title = models.CharField(max_length = 255, verbose_name="Название")
+    title = models.CharField(max_length = 255,verbose_name="Название",)
     slug = models.SlugField(unique = True, db_index = True, verbose_name="URL")
     content = models.TextField(blank = True, verbose_name="Описание")
     photo = models.ImageField(upload_to="photos/", default=None, blank=True, null=True, verbose_name="Фото")
@@ -12,7 +12,7 @@ class Product(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
     price = models.DecimalField( max_digits = 7, decimal_places = 2, verbose_name="Цена")
     quantity = models.IntegerField( default=0, validators=[MinValueValidator(0), MaxValueValidator(10000)], verbose_name="Количество")
-    cat = models.ForeignKey("Category", on_delete = models.PROTECT, null = True)
+    cat = models.ForeignKey("Category", on_delete = models.PROTECT, verbose_name="Категория товара",)
     
     def get_absolute_url(self):
         return reverse("post", kwargs={"post_slug":self.slug})
@@ -24,7 +24,7 @@ class Product(models.Model):
     
     
 class Category(models.Model):
-    name = models.CharField(max_length = 255, db_index = True)
+    name = models.CharField(max_length = 255, db_index = True,)
     slug = models.CharField(max_length = 255, db_index = True, unique = True)
     
     def get_absolute_url(self):
