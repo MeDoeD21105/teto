@@ -29,7 +29,7 @@ class ProductForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data['title']
         if len(title) < 5:
-            raise ValidationError("Длина заголовка не должна быть меньше чем 5 символов.")
+            raise ValidationError(f"Длина заголовка не должна быть меньше чем 5 символов (сейчас {len(title)}).")
         return title
         
 class LoginUserForm(AuthenticationForm):
