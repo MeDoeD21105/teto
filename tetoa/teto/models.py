@@ -1,6 +1,16 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
+from django.core.exceptions import ValidationError
+
+
+
+def vaalidator_erors(name):
+    if len(name) < 3:
+        raise ValidationError("Слишком короткое имя для продукта")
+    else:
+        return name
+    
 
 # Create your models here.
 class Product(models.Model):
