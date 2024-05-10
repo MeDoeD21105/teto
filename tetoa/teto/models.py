@@ -17,7 +17,9 @@ def vaalidator_erors(name):
 # Create your models here.
 class Product(models.Model):
     title = models.CharField(max_length = 255,verbose_name="Название",)
-    slug = models.SlugField(unique = True, db_index = True, verbose_name="URL", validators=[MinLengthValidator(4, message="минимальное количество символов в Url, дожно быть 4")])
+    slug = models.SlugField(unique = True, db_index = True, verbose_name="URL",
+                            validators=[MinLengthValidator(4, message="минимальное количество символов в Url, дожно быть 4"),
+                            MaxLengthValidator(10,message='Больше 10 нельзя!')])
     content = models.TextField(blank = True, verbose_name="Описание")
     photo = models.ImageField(upload_to="photos/", default=None, blank=True, null=True, verbose_name="Фото")
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
