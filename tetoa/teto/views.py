@@ -153,7 +153,7 @@ class tetoCategory(DataMixin, ListView):
 class TagPostList(DataMixin,ListView):
     template_name = 'teto/index.html'
     context_object_name = 'posts'
-    allow_empty = False
+    allow_empty = True
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
